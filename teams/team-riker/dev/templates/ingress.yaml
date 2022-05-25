@@ -4,7 +4,9 @@ metadata:
   name: riker-ingress
   namespace: team-riker
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "traefik"
+    traefik.frontend.passHostHeader: "true"
+    traefik.backend.loadbalancer.sticky: "true"
 spec:
   rules:
   - host: guestbook-ui.{{ .Values.spec.ingress.host }}
@@ -17,5 +19,3 @@ spec:
             name: guestbook-ui
             port: 
               number: 80
-        
-        
